@@ -9,6 +9,10 @@ app.use(express.static("./public"));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + startPage);
 });
+
+const { addTask} = require('./utils/LeongLokYeeUtil')
+app.post('/add-task', addTask);
+
 server = app.listen(PORT, function () {
   const address = server.address();
   const baseUrl = `http://${
