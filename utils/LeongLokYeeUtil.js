@@ -21,6 +21,12 @@ async function addTask(req, res) {
             if (existingTask) {
                 return res.status(400).json({ message: "Task with the same title or description already exists." });
             }
+
+            //error scenario #2: if the deadline of the newly made task is earlier than the deadline of any existing task, return an error
+            const today = new Date().toISOString().split('T')[0];
+            if (deadline < today) {
+                return res.status(400).json({ message: "Deadline cannot be earlier than existing tasks." });
+            }
         } catch (err) {
             if (err.code === 'ENOENT') {
                 // If tasks.json doesn't exist, create it from the template

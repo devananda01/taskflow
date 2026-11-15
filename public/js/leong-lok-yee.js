@@ -11,7 +11,7 @@ function addTask() {
     jsonData.deadline = document.getElementById("deadline").value;
 
     // Validate required fields (all must be filled in)
-    if (jsonData.title == "" || jsonData.description == "" || jsonData.deadline == "") {
+    if (!jsonData.title || !jsonData.description || !jsonData.category || !jsonData.priority || !jsonData.status || !jsonData.deadline) {
         alert('All fields are required!');
         return; // Stop execution if validation fails
     }
@@ -35,6 +35,9 @@ function addTask() {
             // Clear form fields after success
             document.getElementById("title").value = "";
             document.getElementById("description").value = "";
+            document.getElementById("category").value = "";
+            document.getElementById("priority").value = "";
+            document.getElementById("status").value = "";
             document.getElementById("deadline").value = "";
 
             // Close modal

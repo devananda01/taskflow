@@ -4,8 +4,8 @@ class Tasks {
         this.description = description;
         this.category = category;
         this.priority = priority;
-        this.status = status || "Not Started"; // Default status if not provided
-        this.deadline = deadline || new Date().toISOString().split('T')[0]; // Default to current date if not provided
+        this.status = status;
+        this.deadline = deadline; 
 
         const timestamp = new Date().getTime(); 
         const random = Math.floor(Math.random() * 1000);
