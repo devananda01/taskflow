@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const TASKS_FILE = path.join('utils', 'ChloeOngJingYi-tasks.json');
+const TASKS_FILE = path.join('utils', 'tasks.json');
 
 // rounds down to 1 decimal place, e.g. 41.666 to 41.6
 function pct(count, total) {

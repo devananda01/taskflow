@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const TASKS_FILE = path.join('utils', 'ChloeOngJingYi-tasks.json');
+const TASKS_FILE = path.join('utils', 'tasks.json');
 
 // returns every distinct category with the number of tasks in it,
 // e.g. [ { "name": "School", "count": 2 }, { "name": "Work", "count": 1 } ]

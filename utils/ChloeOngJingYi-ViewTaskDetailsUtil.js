@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const TASKS_FILE = path.join('utils', 'ChloeOngJingYi-tasks.json');
+const TASKS_FILE = path.join('utils', 'tasks.json');
 
 async function viewTaskDetails(req, res) {
     try {

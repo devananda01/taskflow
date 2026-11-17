@@ -3,7 +3,7 @@ const path = require('path');
 const { sortTasks } = require('./ChloeOngJingYi-FilterSortTaskUtil');
 const { getPage, validatePaging } = require('./ChloeOngJingYi-PageUtil');
 
-const TASKS_FILE = path.join('utils', 'ChloeOngJingYi-tasks.json');
+const TASKS_FILE = path.join('utils', 'tasks.json');
 
 async function viewTasks(req, res) {
     try {

@@ -2,7 +2,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const { getPage, validatePaging } = require('./ChloeOngJingYi-PageUtil');
 
-const TASKS_FILE = path.join('utils', 'ChloeOngJingYi-tasks.json');
+const TASKS_FILE = path.join('utils', 'tasks.json');
 
 const PRIORITY_RANK = { 'High': 3, 'Medium': 2, 'Low': 1 };
 const STATUS_RANK = { 'Pending': 1, 'In Progress': 2, 'Completed': 3 };
