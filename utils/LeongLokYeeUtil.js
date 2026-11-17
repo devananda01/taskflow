@@ -16,17 +16,23 @@ async function addTask(req, res) {
             const data = await fs.readFile(TASKS_FILE, 'utf8');
             tasks = JSON.parse(data);
 
-            //error scenario #1: if there is already a task with the same title or description, return an error
+            // if there is already a task with the same title or description, return an error
             const existingTask = tasks.some((task) => task.title === title ||  task.description === description);
             if (existingTask) {
                 return res.status(400).json({ message: "Task with the same title or description already exists." });
             }
 
+            //error scenario #1: if any of the required fields are missing, return an error
+            if (!title || !description || !category || !priority || !status || !deadline) {
+                return res.status(400).json({ message: "All fields are required." });
+            }
+            
             //error scenario #2: if the deadline of the newly made task is earlier than the deadline of any existing task, return an error
             const today = new Date().toISOString().split('T')[0];
             if (deadline < today) {
                 return res.status(400).json({ message: "Deadline cannot be earlier than existing tasks." });
             }
+
         } catch (err) {
             if (err.code === 'ENOENT') {
                 // If tasks.json doesn't exist, create it from the template
