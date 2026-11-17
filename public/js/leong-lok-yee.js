@@ -41,10 +41,10 @@ function addTask() {
             document.getElementById("deadline").value = "";
 
             // Close modal
-            $('#resourceModal').modal('hide');
+            $('#taskModal').modal('hide');
 
             // Reload table content
-            viewResources();
+            viewTask();
         } else {
             // Show error if resource could not be added
             alert('Unable to add task!');
