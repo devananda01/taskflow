@@ -6,7 +6,7 @@ const TASKS_FILE = path.join('utils', 'tasks.json');
 
 const PRIORITY_RANK = { 'High': 3, 'Medium': 2, 'Low': 1 };
 const STATUS_RANK = { 'Pending': 1, 'In Progress': 2, 'Completed': 3 };
-const SORTABLE_FIELDS = ['title', 'category', 'priority', 'status', 'deadline'];
+const VALID_SORT_FIELDS = ['deadline', 'priority', 'title', 'status', 'category'];
 const VALID_STATUS = ['Pending', 'In Progress', 'Completed'];
 const VALID_PRIORITY = ['High', 'Medium', 'Low'];
 const VALID_ORDER = ['asc', 'desc'];
@@ -15,16 +15,25 @@ const MAX_TEXT_LENGTH = 50;
 // checks every value in the query string
 // returns an error message for the first problem found, or null if all is fine
 function validateQuery(query) {
-    const { search, status, priority } = query;
+    const { search, status, category, priority, sortBy, order } = query;
 
     if (search !== undefined && String(search).length > MAX_TEXT_LENGTH) {
         return 'Search text must be ' + MAX_TEXT_LENGTH + ' characters or fewer';
+    }
+    if (category !== undefined && String(category).length > MAX_TEXT_LENGTH) {
+        return 'Category must be ' + MAX_TEXT_LENGTH + ' characters or fewer';
     }
     if (status && !VALID_STATUS.includes(status)) {
         return 'Invalid status. Use Pending, In Progress or Completed';
     }
     if (priority && !VALID_PRIORITY.includes(priority)) {
         return 'Invalid priority. Use High, Medium or Low';
+    }
+    if (sortBy && !VALID_SORT_FIELDS.includes(sortBy)) {
+        return 'Invalid sort option. Use ' + VALID_SORT_FIELDS.join(', ');
+    }
+    if (order && !VALID_ORDER.includes(order)) {
+        return 'Invalid sort order. Use asc or desc';
     }
     return null;
 }
