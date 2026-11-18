@@ -16,6 +16,10 @@ function addTask() {
         return; // Stop execution if validation fails
     }
 
+    if (jsonData.deadline < new Date().toISOString().split('T')[0]) {
+        alert('Deadline cannot be earlier than today!');
+        return; // Stop execution if validation fails
+    }
 
 
     // Configure the request to POST data to /add-task
