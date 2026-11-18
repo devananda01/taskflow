@@ -1,12 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskFlow</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    
+    <script src="js/ChloeOngJingYi-view-tasks.js"></script>
+    <script src="js/ChloeOngJingYi-view-task-stats.js"></script>
+    <script src="js/ChloeOngJingYi-view-categories.js"></script>
+    <script src="js/ChloeOngJingYi-view-task-details.js"></script>
+    <script src="js/ChloeOngJingYi-filter-sort-tasks.js"></script>
+    <script src="js/leong-lok-yee.js"></script>
+
+    <!-- for create -->
 </head>
-<body>
-    <h1>TaskFlow</h1>
-    <p>Task Management System</p>
+
+<body onload="viewTasks(); viewCategories(); viewTaskStats()">
+<div class="container mt-4">
+
+    <!-- Top bar -->
+    <h2>TaskFlow</h2>
+    <p>Task Management System | <span id="todayDate"></span></p>
+    <p>Alex Chen - Student Developer</p>
+    <hr>
+
+    <!-- Heading -->
+    <h1>Welcome back!</h1>
+    <p>Manage and track your tasks efficiently across the engineering lifecycle.</p>
+    <!-- create task -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">+ Add Task</button>
+    <hr>
+
+    <!-- Summary -->
+    <div class="row text-center">
+        <div class="col-3">
+            <p>Total Tasks</p>
+            <h2 id="statTotal">0</h2>
+        </div>
+        <div class="col-3">
+            <p>Pending</p>
+            <h2 id="statPending">0</h2>
+            <p id="pctPending">0% load</p>
+        </div>
+        <div class="col-3">
+            <p>In Progress</p>
+            <h2 id="statInProgress">0</h2>
+            <p id="pctInProgress">0% load</p>
+        </div>
+        <div class="col-3">
+            <p>Completed</p>
+            <h2 id="statCompleted">0</h2>
+            <p id="pctCompleted">0% done</p>
+        </div>
+    </div>
+    <hr>
+
+    <!-- My Tasks -->
+    <h3>My Tasks <small id="taskCount">0 tasks</small></h3>
+
+    <!-- Error messages (invalid filter, task not found, server problems) appear here -->
+    <div id="errorMessage" class="alert alert-danger d-none" role="alert"></div>
+
+    <!-- Search, filters and sort -->
+    <input type="text" id="searchInput" placeholder="Search tasks..." onkeyup="debounceSearch()">
+    <button type="button" onclick="clearSearch()">x</button>
+
+    <select id="filterStatus" onchange="filterSortTasks(1)">
+        <option value="">All Statuses</option>
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+    </select>
+
+    <!-- Options are filled in automatically by viewCategories() -->
+    <select id="filterCategory" onchange="filterSortTasks(1)">
+        <option value="">All Categories</option>
+    </select>
+
+    <select id="filterPriority" onchange="filterSortTasks(1)">
+        <option value="">All Priorities</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+    </select>
+
+    <select id="sortBy" onchange="filterSortTasks(1)">
+        <option value="deadline:asc">Sort by: Deadline (Soonest)</option>
+        <option value="deadline:desc">Sort by: Deadline (Latest)</option>
+        <option value="priority:desc">Sort by: Priority (High first)</option>
+        <option value="priority:asc">Sort by: Priority (Low first)</option>
+        <option value="title:asc">Sort by: Title (A-Z)</option>
+        <option value="title:desc">Sort by: Title (Z-A)</option>
+        <option value="status:asc">Sort by: Status</option>
+        <option value="category:asc">Sort by: Category</option>
+    </select>
+
+    <button type="button" onclick="clearFilters()">Clear</button>
+    <!-- (create task) -->
+    <button type="button" data-toggle="modal" data-target="#createTaskModal">+ New</button>
+
+    <br><br>
+
+    <!-- Task table -->
+    <div id="tableWrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Deadline</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableContent">
+            </tbody>
+        </table>
+
+        <span id="showingText"></span>
+        <div id="pagination"></div>
+    </div>
+
+    <!-- Shown when no tasks match -->
+    <div id="emptyState" class="d-none">
+        <h3>No tasks found</h3>
+        <p id="emptyMessage"></p>
+        <button type="button" onclick="clearFilters()">Clear Filters &amp; Search</button>
+        <button type="button" data-toggle="modal" data-target="#createTaskModal">+ Create New Task</button>
+    </div>
+</div>
+
+<!-- Task details pop-up -->
+<div class="modal fade" id="taskDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Task Details</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="taskDetailsContent"></div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- (create task) -->
+     <!-- Modal -->
+    <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="resourceModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="resourceModalLabel">Add New Task</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="title">Task Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Enter task title">
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" placeholder="Enter task description">
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <input type="text" class="form-control" id="category" placeholder="Enter task category">
+              </div>
+              <div class="form-group">
+                <label for="priority">Priority</label>
+                <select class="form-control" id="priority">
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status">
+                  <option value="Not Started">Not Started</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="deadline">Deadline</label>
+                <input type="date" class="form-control" id="deadline">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="addTask()">Add New Task</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+    document.getElementById('todayDate').innerHTML =
+        'Today, ' + new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+</script>
 </body>
 </html>
