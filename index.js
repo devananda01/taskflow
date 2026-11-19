@@ -27,11 +27,11 @@ const { addTask} = require('./utils/LeongLokYeeUtil')
 app.post('/add-task', addTask);
 
 const {
-  updateTask,
+  editTask,
   deleteTask,
 } = require("./utils/DevanandaThayyullathilUtil");
 
-app.put("/update-task/:id", updateTask);
+app.put("/edit-task/:id", editTask);
 app.delete("/delete-task/:id", deleteTask);
 
 server = app.listen(PORT, function () {

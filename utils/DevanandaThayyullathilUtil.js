@@ -59,8 +59,8 @@ function validateTaskFields(body) {
   return null;
 }
 
-// PUT /update-task/:id
-async function updateTask(req, res) {
+// PUT /edit-task/:id
+async function editTask(req, res) {
   try {
     const id = req.params.id;
     const body = req.body || {};
@@ -175,4 +175,4 @@ async function deleteTask(req, res) {
   }
 }
 
-module.exports = { updateTask, deleteTask };
+module.exports = { editTask, deleteTask };
