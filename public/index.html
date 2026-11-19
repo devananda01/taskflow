@@ -17,6 +17,7 @@
     <script src="js/ChloeOngJingYi-view-task-details.js"></script>
     <script src="js/ChloeOngJingYi-filter-sort-tasks.js"></script>
     <script src="js/leong-lok-yee.js"></script>
+    <script src="js/devananda-thayyullathil.js"></script>
 
     <!-- for create -->
 </head>
@@ -207,7 +208,81 @@
         </div>
       </div>
     </div>
-
+<!-- Edit task pop-up -->
+<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="editTitle">Task Title</label>
+            <input type="text" class="form-control" id="editTitle" placeholder="Enter task title">
+          </div>
+          <div class="form-group">
+            <label for="editDescription">Description</label>
+            <input type="text" class="form-control" id="editDescription" placeholder="Enter task description">
+          </div>
+          <div class="form-group">
+            <label for="editCategory">Category</label>
+            <input type="text" class="form-control" id="editCategory" placeholder="Enter task category">
+          </div>
+          <div class="form-group">
+            <label for="editPriority">Priority</label>
+            <select class="form-control" id="editPriority">
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="editStatus">Status</label>
+            <select class="form-control" id="editStatus">
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="editDeadline">Deadline</label>
+            <input type="date" class="form-control" id="editDeadline">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="updateButton" onclick="">Update Task</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Delete task confirmation pop-up -->
+<div class="modal fade" id="deleteTaskModal" tabindex="-1" role="dialog" aria-labelledby="deleteTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteTaskModalLabel">Delete Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="deleteError" class="alert alert-danger d-none" role="alert"></div>
+        <p>Are you sure you want to delete <b id="deleteTaskName"></b>?</p>
+        <p class="text-muted mb-0">This cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteButton" onclick="">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
     document.getElementById('todayDate').innerHTML =
         'Today, ' + new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
