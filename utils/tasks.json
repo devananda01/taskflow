@@ -48,7 +48,7 @@
     "title": "Create Pull Request",
     "description": "Open a PR for the view-task branch",
     "category": "Development",
-    "priority": "Medium",
+    "priority": "High",
     "status": "Completed",
     "deadline": "2026-11-09",
     "id": "1762750000000006"
@@ -61,37 +61,5 @@
     "status": "Pending",
     "deadline": "2026-11-12",
     "id": "1762750000000007"
-  },
-  {
-    "title": "1",
-    "description": "Test all API endpoi1nts",
-    "category": "Development",
-    "priority": "High",
-    "status": "Completed",
-    "deadline": "2026-11-18"
-  },
-  {
-    "title": "4",
-    "description": "6",
-    "category": "3",
-    "priority": "Low",
-    "status": "Not Started",
-    "deadline": "2026-11-28"
-  },
-  {
-    "title": "g",
-    "description": "g",
-    "category": "g",
-    "priority": "Low",
-    "status": "Not Started",
-    "deadline": "2026-11-28"
-  },
-  {
-    "title": "w",
-    "description": "f",
-    "category": "e",
-    "priority": "Low",
-    "status": "Not Started",
-    "deadline": "2026-11-28"
   }
 ]
