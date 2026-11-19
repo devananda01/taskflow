@@ -1,1 +1,4 @@
-node --check index.js
+for file in $(git diff --cached --name-only --diff-filter=ACMR -- '*.js'); do
+    echo "Checking $file..."
+    node --check "$file" || exit 1
+done
