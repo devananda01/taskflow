@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskFlow</title>
+    <link rel="icon" href="data:,">
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
@@ -67,10 +68,14 @@
     <div id="errorMessage" class="alert alert-danger d-none" role="alert"></div>
 
     <!-- Search, filters and sort -->
+<<<<<<< Updated upstream
+    <input type="text" id="searchInput" placeholder="Search tasks..." maxlength="50" aria-label="Search tasks" oninput="debounceSearch()">
+=======
     <input type="text" id="searchInput" placeholder="Search tasks..." onkeyup="debounceSearch()">
-    <button type="button" onclick="clearSearch()">x</button>
+>>>>>>> Stashed changes
+    <button type="button" onclick="clearSearch()" title="Clear search" aria-label="Clear search">x</button>
 
-    <select id="filterStatus" onchange="filterSortTasks(1)">
+    <select id="filterStatus" aria-label="Filter by status" onchange="filterSortTasks(1)">
         <option value="">All Statuses</option>
         <option value="Pending">Pending</option>
         <option value="In Progress">In Progress</option>
@@ -78,18 +83,18 @@
     </select>
 
     <!-- Options are filled in automatically by viewCategories() -->
-    <select id="filterCategory" onchange="filterSortTasks(1)">
+    <select id="filterCategory" aria-label="Filter by category" onchange="filterSortTasks(1)">
         <option value="">All Categories</option>
     </select>
 
-    <select id="filterPriority" onchange="filterSortTasks(1)">
+    <select id="filterPriority" aria-label="Filter by priority" onchange="filterSortTasks(1)">
         <option value="">All Priorities</option>
         <option value="High">High</option>
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
     </select>
 
-    <select id="sortBy" onchange="filterSortTasks(1)">
+    <select id="sortBy" aria-label="Sort tasks" onchange="filterSortTasks(1)">
         <option value="deadline:asc">Sort by: Deadline (Soonest)</option>
         <option value="deadline:desc">Sort by: Deadline (Latest)</option>
         <option value="priority:desc">Sort by: Priority (High first)</option>
@@ -141,7 +146,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Task Details</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
             </div>
             <div class="modal-body" id="taskDetailsContent"></div>
             <div class="modal-footer">
