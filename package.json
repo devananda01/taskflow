@@ -4,9 +4,10 @@
   "description": "TaskFlow is a task management web application with CRUD functionality, built using HTML, CSS, JavaScript, Node.js, and JSON file storage.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
-  },
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "prepare": "husky",
+  "postinstall": "node scripts/setup-data.js"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/devananda01/taskflow.git"
