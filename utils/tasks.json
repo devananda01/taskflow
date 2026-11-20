@@ -48,7 +48,7 @@
     "title": "Create Pull Request",
     "description": "Open a PR for the view-task branch",
     "category": "Development",
-    "priority": "Medium",
+    "priority": "High",
     "status": "Completed",
     "deadline": "2026-11-09",
     "id": "1762750000000006"
@@ -61,14 +61,5 @@
     "status": "Pending",
     "deadline": "2026-11-12",
     "id": "1762750000000007"
-  },
-  {
-    "title": "ok this shouls work ",
-    "description": "testing 123",
-    "category": "Work",
-    "priority": "Low",
-    "status": "Pending",
-    "deadline": "2026-11-21",
-    "id": "1795096592894568"
   }
 ]

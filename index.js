@@ -26,6 +26,13 @@ app.get("/", (req, res) => {
 const { addTask} = require('./utils/LeongLokYeeUtil')
 app.post('/add-task', addTask);
 
+const {
+  editTask,
+  deleteTask,
+} = require("./utils/DevanandaThayyullathilUtil");
+
+app.put("/edit-task/:id", editTask);
+app.delete("/delete-task/:id", deleteTask);
 
 server = app.listen(PORT, function () {
   const address = server.address();

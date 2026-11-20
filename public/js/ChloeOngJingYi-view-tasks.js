@@ -62,8 +62,9 @@ function viewTasks(page) {
                 '<td>' + escapeHtml(tasks[i].priority) + '</td>' +
                 '<td>' + escapeHtml(tasks[i].status) + '</td>' +
                 '<td>' + formatDate(tasks[i].deadline) + '</td>' +
-                '<td><button type="button" onclick="viewTaskDetails(\'' + tasks[i].id + '\')">Details</button></td>' +
-            '</tr>';
+                 "<td>" +'<button type="button" onclick="viewTaskDetails(\'' + tasks[i].id + "')\">Details</button> " + taskActionButtons(tasks[i]) + "</td>"
+        +'</tr>';
+           
         }
         document.getElementById('tableContent').innerHTML = html;
 
