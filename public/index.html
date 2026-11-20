@@ -34,8 +34,6 @@
     <!-- Heading -->
     <h1>Welcome back!</h1>
     <p>Manage and track your tasks efficiently across the engineering lifecycle.</p>
-    <!-- create task -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">+ Add Task</button>
     <hr>
 
     <!-- Summary -->
@@ -104,8 +102,7 @@
 
     <button type="button" onclick="clearFilters()">Clear</button>
     <!-- (create task) -->
-    <button type="button" data-toggle="modal" data-target="#createTaskModal">+ New</button>
-
+    <button type="button" data-toggle="modal" data-target="#taskModal">+ New</button>
     <br><br>
 
     <!-- Task table -->
@@ -134,7 +131,7 @@
         <h3>No tasks found</h3>
         <p id="emptyMessage"></p>
         <button type="button" onclick="clearFilters()">Clear Filters &amp; Search</button>
-        <button type="button" data-toggle="modal" data-target="#createTaskModal">+ Create New Task</button>
+        <button type="button" data-toggle="modal" data-target="#taskModal">+ Create New Task</button>
     </div>
 </div>
 
@@ -177,7 +174,11 @@
               </div>
               <div class="form-group">
                 <label for="category">Category</label>
-                <input type="text" class="form-control" id="category" placeholder="Enter task category">
+                <select class="form-control" id="category">
+                  <option value="Work">Development</option>
+                  <option value="Personal">Personal</option>
+                  <option value="Shopping">School</option>
+                </select>
               </div>
               <div class="form-group">
                 <label for="priority">Priority</label>
@@ -190,7 +191,7 @@
               <div class="form-group">
                 <label for="status">Status</label>
                 <select class="form-control" id="status">
-                  <option value="Not Started">Not Started</option>
+                  <option value="Pending">Pending</option>
                   <option value="In Progress">In Progress</option>
                   <option value="Completed">Completed</option>
                 </select>
