@@ -91,7 +91,7 @@ function filterSortTasks(page) {
                 '<td>' + escapeHtml(tasks[i].status) + '</td>' +
                 '<td>' + formatDate(tasks[i].deadline) + '</td>' +
                 '<td>' +
-    '<button type="button" onclick="viewTaskDetails(\'' + tasks[i].id + '\')">Details</button> ' + taskActionButtons(tasks[i]) + '</td>'
+    '<button type="button" onclick="viewTaskDetails(\'' + tasks[i].id + '\')">Details</button> ' + taskActionButtons(tasks[i]) + '</td>'+
             '</tr>';
         }
         document.getElementById('tableContent').innerHTML = html;
