@@ -135,7 +135,7 @@ async function editTask(req, res) {
     console.error(error);
 
     return res.status(500).json({
-      message: error.message,
+      message: 'Something went wrong, Please try again.',
     });
   }
 }
