@@ -1,0 +1,13 @@
+# --- Line endings -------------------------------------------
+# Windows ends each line with two hidden characters (CRLF). Mac/Linux use one (LF). If teammates use different ones,
+# Git thinks every line changed, which causes messy diffs and fake merge conflicts. These lines make everyone consistent.
+
+* text=auto eol=lf
+
+*.js           text eol=lf
+*.json         text eol=lf
+*.html         text eol=lf
+*.css          text eol=lf
+*.md           text eol=lf
+.gitignore     text eol=lf
+.gitattributes text eol=lf
