@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Complete DevOps Assignment",
+    "description": "Set up Docker & CI/CD pipeline",
+    "category": "School",
+    "priority": "High",
+    "status": "In Progress",
+    "deadline": "2026-11-10",
+    "id": "1762750000000001"
+  },
+  {
+    "title": "Prepare Presentation",
+    "description": "Final project slides for demo day",
+    "category": "School",
+    "priority": "Medium",
+    "status": "Pending",
+    "deadline": "2026-11-15",
+    "id": "1762750000000002"
+  },
+  {
+    "title": "Test Backend APIs",
+    "description": "Verify CRUD endpoints & status codes",
+    "category": "Development",
+    "priority": "High",
+    "status": "Completed",
+    "deadline": "2026-11-12",
+    "id": "1762750000000003"
+  },
+  {
+    "title": "Dockerize Node.js App",
+    "description": "Create multi-stage Dockerfile",
+    "category": "Development",
+    "priority": "Medium",
+    "status": "In Progress",
+    "deadline": "2026-11-18",
+    "id": "1762750000000004"
+  },
+  {
+    "title": "Setup GitHub Actions Workflow",
+    "description": "Automated test suite and lint checks",
+    "category": "Development",
+    "priority": "Low",
+    "status": "Pending",
+    "deadline": "2026-11-20",
+    "id": "1762750000000005"
+  },
+  {
+    "title": "Create Pull Request",
+    "description": "Open a PR for the view-task branch",
+    "category": "Development",
+    "priority": "High",
+    "status": "Completed",
+    "deadline": "2026-11-09",
+    "id": "1762750000000006"
+  },
+  {
+    "title": "Buy Groceries",
+    "description": "Milk, eggs, bread and fruit",
+    "category": "Personal",
+    "priority": "Low",
+    "status": "Pending",
+    "deadline": "2026-11-12",
+    "id": "1762750000000007"
+  },
+  {
+    "id": "1795261287187304",
+    "title": "g",
+    "description": "ggg",
+    "category": "Work",
+    "priority": "Low",
+    "status": "Pending",
+    "deadline": "2026-11-21"
+  }
+]
