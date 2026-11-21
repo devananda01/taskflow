@@ -92,6 +92,14 @@ button:focus-visible {
     border-color: #1d4ed8;
 }
 
+#createTaskButton {
+    background: #2563eb;
+    border-color: #2563eb;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    padding: 8px 14px;
+}
 /* Stat cards */
 .row.text-center {
     display: flex;
