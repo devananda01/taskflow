@@ -1,4 +1,4 @@
-const { Tasks } = require('../models/Task');
+const { Task } = require('../models/Task');
 const fs = require('fs').promises;
 const path = require('path');
 
@@ -8,7 +8,7 @@ const TEMPLATE_FILE = path.join('utils', 'tasks.template.json');
 async function addTask(req, res) {
     try {
         const { title, description, category, priority, status, deadline } = req.body;
-        const newTask = new Tasks(title, description, category, priority, status, deadline);
+        const newTask = new Task(title, description, category, priority, status, deadline);
 
         let tasks = [];
         try {
@@ -26,7 +26,7 @@ async function addTask(req, res) {
             if (!title || !description || !category || !priority || !status || !deadline) {
                 return res.status(400).json({ message: "All fields are required." });
             }
-            
+
             //error scenario #2: if the deadline of the newly made task is earlier than the deadline of any existing task, return an error
             const today = new Date().toISOString().split('T')[0];
             if (deadline < today) {

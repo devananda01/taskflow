@@ -16,6 +16,10 @@ function addTask() {
         return; // Stop execution if validation fails
     }
 
+    if (jsonData.deadline < new Date().toISOString().split('T')[0]) {
+        alert('Deadline cannot be earlier than today!');
+        return; // Stop execution if validation fails
+    }
 
 
     // Configure the request to POST data to /add-task
@@ -41,10 +45,10 @@ function addTask() {
             document.getElementById("deadline").value = "";
 
             // Close modal
-            $('#resourceModal').modal('hide');
+            $('#taskModal').modal('hide');
 
             // Reload table content
-            viewResources();
+            viewTask();
         } else {
             // Show error if resource could not be added
             alert('Unable to add task!');

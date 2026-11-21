@@ -6,6 +6,19 @@ var startPage = "index.html";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
+
+const { viewTasks } = require('./utils/ChloeOngJingYi-ViewTaskUtil')
+const { viewCategories } = require('./utils/ChloeOngJingYi-ViewCategoriesUtil')
+const { viewTaskDetails } = require('./utils/ChloeOngJingYi-ViewTaskDetailsUtil')
+const { viewTaskStats } = require('./utils/ChloeOngJingYi-ViewTaskStatsUtil')
+const { filterSortTasks } = require('./utils/ChloeOngJingYi-FilterSortTaskUtil')
+
+app.get('/view-tasks', viewTasks)
+app.get('/view-task-stats', viewTaskStats)
+app.get('/view-categories', viewCategories)
+app.get('/view-task-details/:id', viewTaskDetails)
+app.get('/filter-sort-tasks', filterSortTasks)
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + startPage);
 });
@@ -13,6 +26,13 @@ app.get("/", (req, res) => {
 const { addTask} = require('./utils/LeongLokYeeUtil')
 app.post('/add-task', addTask);
 
+const {
+  editTask,
+  deleteTask,
+} = require("./utils/DevanandaThayyullathilUtil");
+
+app.put("/edit-task/:id", editTask);
+app.delete("/delete-task/:id", deleteTask);
 
 server = app.listen(PORT, function () {
   const address = server.address();
