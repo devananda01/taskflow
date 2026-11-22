@@ -30,7 +30,7 @@ async function addTask(req, res) {
             //error scenario #2: if the deadline of the newly made task is earlier than the deadline of any existing task, return an error
             const today = new Date().toISOString().split('T')[0];
             if (deadline < today) {
-                return res.status(400).json({ message: "Deadline cannot be earlier than existing tasks." });
+                return res.status(400).json({ message: "Deadline cannot be earlier than today's date." });
             }
 
         } catch (err) {
