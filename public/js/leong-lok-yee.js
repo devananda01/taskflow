@@ -48,7 +48,7 @@ function addTask() {
             $('#taskModal').modal('hide');
 
             // Reload table content
-            viewTask();
+            refreshTaskViews();
         } else {
             // Show error if resource could not be added
             alert('Unable to add task!');
