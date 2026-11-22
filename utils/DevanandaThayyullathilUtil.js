@@ -42,7 +42,7 @@ function validateTaskFields(body) {
   }
 
   if (!VALID_STATUS.includes(status)) {
-    return "Invalid status. Use Not Started, Pending, In Progress or Completed.";
+    return "Invalid status. Use Pending, In Progress or Completed.";
   }
 
   // Check deadline format and whether it is a real calendar date
@@ -170,7 +170,7 @@ async function deleteTask(req, res) {
     console.error(error);
 
     return res.status(500).json({
-      message: error.message,
+      message: "Something went wrong, Please try again.",
     });
   }
 }
